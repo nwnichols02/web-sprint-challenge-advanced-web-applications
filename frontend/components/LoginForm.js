@@ -1,29 +1,30 @@
-import React, { useState } from 'react'
-import PT from 'prop-types'
+import React, { useState } from "react";
+import PT from "prop-types";
 
 const initialFormValues = {
-  username: '',
-  password: '',
-}
+  username: "",
+  password: "",
+};
 export default function LoginForm(props) {
-  const [values, setValues] = useState(initialFormValues)
+  const [values, setValues] = useState(initialFormValues);
   // ✨ where are my props? Destructure them here
   const { login } = props;
 
-  const onChange = evt => {
-    const { id, value } = evt.target
-    setValues({ ...values, [id]: value })
-  }
+  const onChange = (evt) => {
+    const { id, value } = evt.target;
+    setValues({ ...values, [id]: value });
+  };
 
-  const onSubmit = evt => {
-    evt.preventDefault()
+  const onSubmit = (evt) => {
+    evt.preventDefault();
     // ✨ implement
-    login(values)
-  }
+    login(values);
+  };
 
-  const trimmedInputs = (input, minChars) => input.trim().length >= minChars
+  const trimmedInputs = (input, minChars) => input.trim().length >= minChars;
 
-  const isDisabled = () =>  !trimmedInputs(values.username, 3) || !trimmedInputs(values.password, 8)
+  const isDisabled = () =>
+    !trimmedInputs(values.username, 3) || !trimmedInputs(values.password, 8);
   //   // ✨ implement
   //   // Trimmed username must be >= 3, and
   //   // trimmed password must be >= 8 for
@@ -47,12 +48,14 @@ export default function LoginForm(props) {
         placeholder="Enter password"
         id="password"
       />
-      <button disabled={isDisabled()} id="submitCredentials">Submit credentials</button>
+      <button disabled={isDisabled()} id="submitCredentials">
+        Submit credentials
+      </button>
     </form>
-  )
+  );
 }
 
 // 🔥 No touchy: LoginForm expects the following props exactly:
 LoginForm.propTypes = {
   login: PT.func.isRequired,
-}
+};

@@ -21,10 +21,10 @@ export default function App() {
   // ✨ Research `useNavigate` in React Router v.6
   const navigate = useNavigate();
   const redirectToLogin = () => {
-    /* ✨ implement */ navigate("/");
+    navigate("/");
   };
   const redirectToArticles = () => {
-    /* ✨ implement */ navigate("/articles");
+    navigate("/articles");
   };
 
   const logout = () => {
@@ -69,8 +69,6 @@ export default function App() {
     axiosWithAuth()
       .get(articlesUrl)
       .then((res) => {
-        // console.log(res);
-        // setMessage(sucessmessage)
         setArticles(res.data.articles);
         setMessage(res.data.message);
       })
@@ -119,7 +117,6 @@ export default function App() {
   const updateArticle = (article_id, article) => {
     // ✨ implement
     // You got this!
-    // let { article_id, ...changes } = article
     setSpinnerOn(true);
     axiosWithAuth()
       .put(`${articlesUrl}/${article_id}`, article)
