@@ -49,8 +49,8 @@ export default function App() {
         window.localStorage.setItem("token", token);
         redirectToArticles();
       })
-      .catch((err) => {
-        debugger;
+      .catch(error => {
+        setMessage(error.response.data.message)
       })
       .finally(() => {
         setSpinnerOn(false);
@@ -69,7 +69,7 @@ export default function App() {
     axiosWithAuth()
       .get(articlesUrl)
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         // setMessage(sucessmessage)
         setArticles(res.data.articles)
         setMessage(res.data.message)

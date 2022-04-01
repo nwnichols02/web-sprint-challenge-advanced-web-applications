@@ -45,11 +45,13 @@ export default function ArticleForm(props) {
     // depending on the truthyness of the `currentArticle` prop.
   }
 
-  const isDisabled = () => {!values.title.trim() && !values.text.trim() && !values.topic.trim()
+  
+  // const trimmedInputs = (input, minChars) => input.trim().length >= minChars
 
+  const isDisabled = () =>  !values.title.trim() || !values.text.trim() || !values.topic
     // ✨ implement
     // Make sure the inputs have some values
-  }
+  
 
   return (
     // ✨ fix the JSX: make the heading display either "Edit" or "Create"
