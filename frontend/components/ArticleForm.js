@@ -45,9 +45,6 @@ export default function ArticleForm(props) {
     // depending on the truthyness of the `currentArticle` prop.
   }
 
-  
-  // const trimmedInputs = (input, minChars) => input.trim().length >= minChars
-
   const isDisabled = () =>  !values.title.trim() || !values.text.trim() || !values.topic
     // ✨ implement
     // Make sure the inputs have some values

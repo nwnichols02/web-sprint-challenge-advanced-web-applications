@@ -39,7 +39,7 @@ export default function App() {
   };
 
   const login = ({ username, password }) => {
-    setMessage('');
+    setMessage("");
     setSpinnerOn(true);
     axios
       .post(loginUrl, { username, password })
@@ -49,8 +49,8 @@ export default function App() {
         window.localStorage.setItem("token", token);
         redirectToArticles();
       })
-      .catch(error => {
-        setMessage(error.response.data.message)
+      .catch((error) => {
+        setMessage(error.response.data.message);
       })
       .finally(() => {
         setSpinnerOn(false);
@@ -64,15 +64,15 @@ export default function App() {
   };
 
   const getArticles = () => {
-    setMessage('');
+    setMessage("");
     setSpinnerOn(true);
     axiosWithAuth()
       .get(articlesUrl)
       .then((res) => {
         // console.log(res);
         // setMessage(sucessmessage)
-        setArticles(res.data.articles)
-        setMessage(res.data.message)
+        setArticles(res.data.articles);
+        setMessage(res.data.message);
       })
       .catch((err) => {
         if (err.response.status === 401) {
@@ -94,12 +94,12 @@ export default function App() {
   };
 
   const postArticle = (article) => {
-    setSpinnerOn(true)
+    setSpinnerOn(true);
     axiosWithAuth()
       .post(articlesUrl, article)
       .then((res) => {
-        setArticles([...articles, res.data.article])
-        setMessage(res.data.message)
+        setArticles([...articles, res.data.article]);
+        setMessage(res.data.message);
       })
       .catch((err) => {
         if (err.response.status === 401) {
@@ -116,11 +116,11 @@ export default function App() {
     // to inspect the response from the server.
   };
 
-  const updateArticle = ({ article_id, article }) => {
+  const updateArticle = (article_id, article) => {
     // ✨ implement
     // You got this!
     // let { article_id, ...changes } = article
-    setSpinnerOn(true)
+    setSpinnerOn(true);
     axiosWithAuth()
       .put(`${articlesUrl}/${article_id}`, article)
       .then((res) => {
@@ -145,7 +145,7 @@ export default function App() {
 
   const deleteArticle = (article_id) => {
     // ✨ implement
-    setSpinnerOn(true)
+    setSpinnerOn(true);
     axiosWithAuth()
       .delete(`${articlesUrl}/${article_id}`)
       .then((res) => {
@@ -167,18 +167,10 @@ export default function App() {
       });
   };
 
-  // const onSubmit = (article) => {
-  //   if(currentArticleId) {
-  //     putArticle(article)
-  //   } else {
-  //     postArticle(article)
-  //   }
-  // }
-
   return (
     // ✨ fix the JSX: `Spinner`, `Message`, `LoginForm`, `ArticleForm` and `Articles` expect props ❗
     <React.StrictMode>
-      <Spinner on={spinnerOn}/>
+      <Spinner on={spinnerOn} />
       <Message message={message} />
       <button id="logout" onClick={logout}>
         Logout from app
@@ -208,13 +200,13 @@ export default function App() {
                   postArticle={postArticle}
                   updateArticle={updateArticle}
                   setCurrentArticleId={setCurrentArticleId}
-                  />
+                />
                 <Articles
                   articles={articles}
-                  setCurrentArticleId={setCurrentArticleId}
                   message={message}
-                  getArticles={getArticles}
                   currentArticleId={currentArticleId}
+                  setCurrentArticleId={setCurrentArticleId}
+                  getArticles={getArticles}
                   deleteArticle={deleteArticle}
                 />
               </>
